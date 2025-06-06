@@ -204,28 +204,10 @@ document.querySelectorAll('img[loading="lazy"]').forEach(img => {
     imageObserver.observe(img);
 });
 
-// Add parallax effect to hero section
-let ticking = false;
-function updateParallax() {
-    const scrolled = window.pageYOffset;
-    const hero = document.querySelector('.hero');
-    const speed = 0.5;
-    
-    if (hero) {
-        hero.style.transform = `translateY(${scrolled * speed}px)`;
-    }
-    
-    ticking = false;
-}
-
-function requestTick() {
-    if (!ticking) {
-        window.requestAnimationFrame(updateParallax);
-        ticking = true;
-    }
-}
-
-window.addEventListener('scroll', requestTick);
+// Hero section scroll behavior
+window.addEventListener('scroll', () => {
+    // Regular scroll behavior without parallax
+});
 
 // Add hover effect to project cards
 const projectCards = document.querySelectorAll('.project-card');
@@ -287,3 +269,30 @@ if (isMobile()) {
 console.log('%c JOHN DOE ', 'background: #111; color: #f8f8f8; font-size: 40px; font-weight: bold; padding: 10px 20px;');
 console.log('%c Creative Developer × Photographer × Musician ', 'background: #444; color: #bbb; font-size: 16px; padding: 5px 10px;');
 console.log('Interested in the code? Check out my GitHub: https://github.com/johndoe');
+
+// Highlight active section in navigation
+function updateActiveSection() {
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    let currentSection = '';
+    
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (window.scrollY >= (sectionTop - sectionHeight/3)) {
+            currentSection = section.getAttribute('id');
+        }
+    });
+    
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${currentSection}`) {
+            link.classList.add('active');
+        }
+    });
+}
+
+// Add scroll event listener for active section highlighting
+window.addEventListener('scroll', debounce(updateActiveSection, 100));
+window.addEventListener('load', updateActiveSection);

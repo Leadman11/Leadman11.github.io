@@ -52,9 +52,23 @@ p, a {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     position: relative;
-    border-bottom: 2px solid var(--mid-gray);
+    transform: none !important; /* Prevent any transform effects */
+}
+
+.hero .container {
+    text-align: left;
+    margin: 0;
+    padding-left: 2rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+}
+
+.hero-content {
+    flex: 1;
 }
 
 .hero h1 {
@@ -71,10 +85,19 @@ p, a {
 
 /* Navigation */
 .nav-minimal {
+    position: fixed;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
     display: flex;
+    flex-direction: column;
     gap: 2rem;
-    flex-wrap: wrap;
-    justify-content: center;
+    z-index: 100;
+    background-color: rgba(17, 17, 17, 0.8);
+    padding: 1.5rem;
+    border-radius: 4px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .nav-link {
@@ -85,17 +108,20 @@ p, a {
     letter-spacing: 0.1em;
     transition: var(--transition);
     position: relative;
+    padding-right: 1.5rem;
+    white-space: nowrap;
 }
 
 .nav-link::after {
     content: '';
     position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 2px;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2px;
+    height: 0;
     background-color: var(--white);
-    transition: width 0.3s ease;
+    transition: height 0.3s ease;
 }
 
 .nav-link:hover {
@@ -103,13 +129,20 @@ p, a {
 }
 
 .nav-link:hover::after {
-    width: 100%;
+    height: 100%;
+}
+
+.nav-link.active {
+    color: var(--white);
+}
+
+.nav-link.active::after {
+    height: 100%;
 }
 
 /* Sections */
 .section {
     padding: 8rem 0;
-    border-bottom: 2px solid var(--mid-gray);
 }
 
 .section-title {
@@ -444,7 +477,6 @@ p, a {
 .footer {
     padding: 6rem 0 2rem;
     background-color: rgba(68, 68, 68, 0.1);
-    border-top: 2px solid var(--mid-gray);
 }
 
 .footer-content {
@@ -544,7 +576,14 @@ p, a {
     }
 
     .nav-minimal {
-        gap: 1rem;
+        right: 1rem;
+        padding: 1rem;
+        background-color: rgba(17, 17, 17, 0.95);
+    }
+
+    .nav-link {
+        font-size: 0.75rem;
+        padding-right: 1rem;
     }
 
     .section {
@@ -592,5 +631,10 @@ p, a {
 
     .creative-grid {
         grid-template-columns: 1fr;
+    }
+
+    .nav-minimal {
+        right: 0.5rem;
+        padding: 0.75rem;
     }
 }
