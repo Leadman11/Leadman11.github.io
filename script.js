@@ -144,6 +144,33 @@ audioPlayer.addEventListener('ended', () => {
 // Initialize player on load
 window.addEventListener('load', initializePlayer);
 
+// Hero animation on page load
+function initHeroAnimation() {
+    // Only animate on desktop (width > 768px)
+    if (window.innerWidth > 768) {
+        const heroContent = document.querySelector('.hero-content');
+        const heroAside = document.querySelector('.hero-aside');
+        
+        // Start the animation after a brief delay
+        setTimeout(() => {
+            heroContent.classList.add('animate-in');
+            heroAside.classList.add('animate-in');
+        }, 500);
+    } else {
+        // For mobile, trigger animation immediately
+        const heroContent = document.querySelector('.hero-content');
+        const heroAside = document.querySelector('.hero-aside');
+        
+        setTimeout(() => {
+            heroContent.classList.add('animate-in');
+            heroAside.classList.add('animate-in');
+        }, 300);
+    }
+}
+
+// Initialize hero animation on load
+window.addEventListener('load', initHeroAnimation);
+
 // Lightbox functionality
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightboxImage');
@@ -266,9 +293,7 @@ if (isMobile()) {
 }
 
 // Console Easter egg
-console.log('%c JOHN DOE ', 'background: #111; color: #f8f8f8; font-size: 40px; font-weight: bold; padding: 10px 20px;');
-console.log('%c Creative Developer × Photographer × Musician ', 'background: #444; color: #bbb; font-size: 16px; padding: 5px 10px;');
-console.log('Interested in the code? Check out my GitHub: https://github.com/johndoe');
+console.log('%c :) ', 'background: #111; color: #f8f8f8; font-size: 40px; font-weight: bold; padding: 10px 20px;');
 
 // Highlight active section in navigation
 function updateActiveSection() {
@@ -296,3 +321,84 @@ function updateActiveSection() {
 // Add scroll event listener for active section highlighting
 window.addEventListener('scroll', debounce(updateActiveSection, 100));
 window.addEventListener('load', updateActiveSection);
+
+// Gallery functionality
+const galleryModal = document.getElementById('galleryModal');
+const galleryGrid = document.querySelector('.gallery-grid');
+const galleryTitle = document.querySelector('.gallery-title');
+const closeGalleryBtn = document.querySelector('.close-gallery');
+const albumItems = document.querySelectorAll('.album-item');
+
+// Sample photo data (you would replace this with your actual photo data)
+const albumData = {
+    urban: [
+        { src: 'assets/photos/urban/1.jpg', alt: 'Urban scene 1' },
+        { src: 'assets/photos/urban/2.jpg', alt: 'Urban scene 2' },
+        // Add more photos
+    ],
+    abstract: [
+        { src: 'assets/photos/abstract/1.jpg', alt: 'Abstract composition 1' },
+        { src: 'assets/photos/abstract/2.jpg', alt: 'Abstract composition 2' },
+        // Add more photos
+    ],
+    nature: [
+        { src: 'assets/photos/nature/1.jpg', alt: 'Nature scene 1' },
+        { src: 'assets/photos/nature/2.jpg', alt: 'Nature scene 2' },
+        // Add more photos
+    ]
+};
+
+function openGallery(albumId) {
+    const album = albumData[albumId];
+    if (!album) return;
+
+    galleryGrid.innerHTML = '';
+    galleryTitle.textContent = document.querySelector(`[data-album="${albumId}"] h3`).textContent;
+
+    album.forEach(photo => {
+        const photoElement = document.createElement('div');
+        photoElement.className = 'photo-item';
+        photoElement.innerHTML = `
+            <img src="${photo.src}" alt="${photo.alt}" loading="lazy"
+                 data-full="${photo.src}">
+        `;
+        galleryGrid.appendChild(photoElement);
+    });
+
+    galleryModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+    // Add click handlers to the new photos
+    galleryGrid.querySelectorAll('.photo-item').forEach(item => {
+        item.addEventListener('click', function() {
+            const img = this.querySelector('img');
+            lightboxImg.src = img.getAttribute('data-full');
+            lightboxImg.alt = img.alt;
+            lightbox.classList.add('active');
+        });
+    });
+}
+
+function closeGallery() {
+    galleryModal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+// Event listeners for gallery
+albumItems.forEach(item => {
+    item.addEventListener('click', () => {
+        const albumId = item.getAttribute('data-album');
+        openGallery(albumId);
+    });
+});
+
+closeGalleryBtn.addEventListener('click', closeGallery);
+
+// Close gallery with escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        if (galleryModal.classList.contains('active')) {
+            closeGallery();
+        }
+    }
+});

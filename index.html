@@ -21,7 +21,7 @@
         <a href="#photography" class="nav-link">Photography</a>
         <a href="#code" class="nav-link">Code</a>
         <a href="#creative" class="nav-link">Creative</a>
-        <a href="#about" class="nav-link">About</a>
+        <a href="#connect" class="nav-link">Connect</a>
     </nav>
 
     <!-- Hero Section -->
@@ -29,7 +29,13 @@
         <div class="container">
             <div class="hero-content">
                 <h1>Chris He</h1>
-                <p class="tagline">Creative Developer × Photographer × Musician</p>
+                <p class="tagline">developer × musician × photographer</p>
+            </div>
+            <div class="hero-aside">
+                <p>Exploring intersections of art and technology.<br><br>
+                I also compose, arrange, teach, climb, and blow air through acoustic and electronic instruments.<br><br>
+                <a href="#connect" class="hero-aside-link">reach out</a>
+                </p>
             </div>
         </div>
     </section>
@@ -72,49 +78,26 @@
     <section id="photography" class="section">
         <div class="container">
             <h2 class="section-title">PHOTOGRAPHY</h2>
-            <div class="photo-grid">
-                <div class="photo-item" data-src="assets/photos/photo1-full.jpg">
-                    <img src="assets/photos/photo1-thumb.jpg" 
-                         data-full="assets/photos/photo1-full.jpg" 
-                         alt="Urban architecture at dusk" 
-                         loading="lazy">
-                    <div class="photo-overlay">VIEW</div>
+            <ul class="album-list">
+                <li class="album-item" data-album="urban">
+                    <h3>Urban Architecture</h3>
+                    <span class="album-count">12 photos</span>
+                </li>
+                <li class="album-item" data-album="abstract">
+                    <h3>Abstract Light</h3>
+                    <span class="album-count">8 photos</span>
+                </li>
+                <li class="album-item" data-album="nature">
+                    <h3>Nature Monochrome</h3>
+                    <span class="album-count">15 photos</span>
+                </li>
+            </ul>
+            <div id="galleryModal" class="gallery-modal">
+                <div class="gallery-header">
+                    <h3 class="gallery-title"></h3>
+                    <span class="close-gallery">&times;</span>
                 </div>
-                <div class="photo-item" data-src="assets/photos/photo2-full.jpg">
-                    <img src="assets/photos/photo2-thumb.jpg" 
-                         data-full="assets/photos/photo2-full.jpg" 
-                         alt="Abstract light patterns" 
-                         loading="lazy">
-                    <div class="photo-overlay">VIEW</div>
-                </div>
-                <div class="photo-item" data-src="assets/photos/photo3-full.jpg">
-                    <img src="assets/photos/photo3-thumb.jpg" 
-                         data-full="assets/photos/photo3-full.jpg" 
-                         alt="Industrial minimalism" 
-                         loading="lazy">
-                    <div class="photo-overlay">VIEW</div>
-                </div>
-                <div class="photo-item" data-src="assets/photos/photo4-full.jpg">
-                    <img src="assets/photos/photo4-thumb.jpg" 
-                         data-full="assets/photos/photo4-full.jpg" 
-                         alt="Nature in monochrome" 
-                         loading="lazy">
-                    <div class="photo-overlay">VIEW</div>
-                </div>
-                <div class="photo-item" data-src="assets/photos/photo5-full.jpg">
-                    <img src="assets/photos/photo5-thumb.jpg" 
-                         data-full="assets/photos/photo5-full.jpg" 
-                         alt="Street photography" 
-                         loading="lazy">
-                    <div class="photo-overlay">VIEW</div>
-                </div>
-                <div class="photo-item" data-src="assets/photos/photo6-full.jpg">
-                    <img src="assets/photos/photo6-thumb.jpg" 
-                         data-full="assets/photos/photo6-full.jpg" 
-                         alt="Geometric shadows" 
-                         loading="lazy">
-                    <div class="photo-overlay">VIEW</div>
-                </div>
+                <div class="gallery-grid"></div>
             </div>
         </div>
     </section>
@@ -221,7 +204,7 @@
     </section>
 
     <!-- About/Contact Footer -->
-    <footer id="about" class="footer">
+    <footer id="connect" class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="about-section">
@@ -239,7 +222,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Chris He. No rights reserved. Copy everything.</p>
+                <p>&copy; 2025 Chris He.</p>
             </div>
         </div>
     </footer>
