@@ -70,6 +70,7 @@ p, a {
 
 .hero-content {
     flex: 1;
+    padding-left: 3rem;
     transform: translateX(50vw);
     opacity: 0;
     transition: all 1.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -88,7 +89,7 @@ p, a {
 }
 
 .tagline {
-    font-size: clamp(1rem, 2vw, 1.5rem);
+    font-size: clamp(1rem, 1.1vw, 1.5rem);
     color: var(--light-gray);
     margin-bottom: 3rem;
 }
