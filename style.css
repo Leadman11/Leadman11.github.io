@@ -730,4 +730,53 @@ p, a {
     transform: translateX(5px);
 }
 
+/* About Section Layout */
+.about-content {
+    display: flex;
+    gap: 4rem;
+    align-items: center;
+    max-width: 1000px;
+}
+
+.profile-image {
+    flex: 1;
+    max-width: 400px;
+}
+
+.profile-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    /* aspect-ratio: 1; */
+    transition: var(--transition);
+}
+
+.profile-image img:hover {
+    border-color: var(--white);
+}
+
+.about-text {
+    flex: 1;
+}
+
+.about-text p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--light-gray);
+}
+
+/* Responsive layout for about section */
+@media (max-width: 768px) {
+    .about-content {
+        flex-direction: column;
+        gap: 2rem;
+        text-align: center;
+    }
+    
+    .profile-image {
+        max-width: 250px;
+        margin: 0 auto;
+    }
+}
+
 
